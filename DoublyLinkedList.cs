@@ -3,12 +3,12 @@ namespace ConsoleApp1;
 public class DoublyLinkedList
 {
     public DoublyNode head ;
-    // public DoublyNode tail ;
+    public DoublyNode tail ;
 
     public DoublyLinkedList()
     {
         this.head = null;
-        // this.tail = null;
+        this.tail = null;
     }
 
     public void AddNode(int data)
@@ -17,7 +17,8 @@ public class DoublyLinkedList
         {
             DoublyNode newNode = new DoublyNode(data);
             this.head = newNode;
-            
+            this.tail = newNode;
+
         }
         else
         {
@@ -31,8 +32,30 @@ public class DoublyLinkedList
             current.Next = newNode;
             newNode.Prev = current;
             newNode.Next = null;
+            this.tail = newNode;
 
 
+        }
+    }
+
+    public DoublyLinkedList? Reverse()
+    {
+        if (this.head == null)
+        {
+            Console.WriteLine("the linked list is empty");
+            return null;
+        }
+        else
+        {
+            DoublyLinkedList newList = new DoublyLinkedList();
+            DoublyNode current = this.tail;
+            while (current != null)
+            {
+                newList.AddNode(current.Data);
+                current = current.Prev;
+            }
+
+            return newList;
         }
     }
 
